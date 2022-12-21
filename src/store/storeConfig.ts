@@ -104,7 +104,7 @@ export const store = configureStore({reducer: combineReducers({
 setupListeners(store.dispatch);
 
 
-loop();
+//loop();
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

@@ -1,10 +1,12 @@
 import {Orientar} from "../Login/style";
+import { Body } from "../../components/Body";
+import { Menu } from "../../components/Menu";
 
-type Props = {
-    nome: String
-}
 
-export const Home = (props: Props): JSX.Element => { 
-    const {nome} = props;
-    return <>{nome}</> 
+export const Home = (): JSX.Element => { 
+    return(
+        <Body pageTitle={"Home"}>
+            <Menu></Menu>
+        </Body>
+    )
 }
