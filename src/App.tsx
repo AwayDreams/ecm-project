@@ -66,6 +66,9 @@ function App() {
         <Route path="/FormEditor">
           <FormEditor></FormEditor>
         </Route>
+        <Route path="/DataTypeMenu">
+          <DataTypeMenu dataTypeId={null}></DataTypeMenu>
+        </Route>
       </Switch>
     </Router>
   );

@@ -1,5 +1,6 @@
 import React, {
-    useEffect
+  useCallback,
+    useEffect, useState
 } from "react";
 import {
     FormEditor
@@ -14,7 +15,8 @@ import "./style/properties-panel.css";
 
 
 export const FormViewer = (): JSX.Element => {
-    var formEditor;
+    const [formEditor, setFormEditor] = useState<any>();
+    
     const schema = {
         schemaVersion: 3,
         exporter: {
@@ -40,17 +42,17 @@ export const FormViewer = (): JSX.Element => {
       }
 
     useEffect(() => {
-        formEditor = new FormEditor({
-            container: document.querySelector('#form-editor')
-        })
+        setFormEditor(new FormEditor({
+          container: document.querySelector('#form-editor')
+        }))
         formEditor.importSchema(schema)
     }, [])
 
-    const save = async () => {
+    const save = useCallback(() => {
         console.log('save');
         const schema = formEditor.saveSchema();
         console.log(schema);
-      }
+      }, [])
 
     return ( 
         <div style={{ height: "100%" }}>

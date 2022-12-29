@@ -1,13 +1,15 @@
 import { Box, Card, CardActions, CardContent, Collapse, IconButton, IconButtonProps, styled, Typography } from "@mui/material"
 import DeleteIcon from '@mui/icons-material/Delete';
-import { width } from "@mui/system";
-import React from "react";
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import React, { useEffect, useState } from "react";
 import { FieldTypeForm } from "./FieldTypeForm";
 import EditIcon from '@mui/icons-material/Edit';
 
 type Props = {
-  content: String
+  id: Number,
+  dataTypeId: Number,
+  expanded: boolean,
+  name: String,
+  tipo: String
 }
 
 interface ExpandMoreProps extends IconButtonProps {
@@ -25,10 +27,16 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
   }),
 }));
 
-
 export const FieldListItem = (props: Props): JSX.Element => {
+  const [name, setName] = useState<String>("");
+  const [expanded, setExpanded] = useState(false);
 
-  const [expanded, setExpanded] = React.useState(false);
+
+  useEffect(() => {
+    console.log("props", props);
+    setName(props.name);
+    if(props.expanded) setExpanded(!expanded);
+  }, [])
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -39,7 +47,7 @@ export const FieldListItem = (props: Props): JSX.Element => {
     <CardContent>
       <Box sx={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
         <Typography variant="h5" component="div">
-          {props.content}
+          {name}
         </Typography>
         <Box sx={{ display: 'inline-flex', alignItems: 'center' }}>
           <IconButton
@@ -65,8 +73,12 @@ export const FieldListItem = (props: Props): JSX.Element => {
     </CardContent>
     <Collapse in={expanded} timeout="auto" unmountOnExit>
       <CardContent>
-        <FieldTypeForm />
+        <FieldTypeForm id={props.id} dataTypeId={props.dataTypeId} name={name} tipo={props.tipo} />
       </CardContent>
     </Collapse>
   </Card>);
+}
+
+function useCallBack(arg0: () => void, arg1: never[]) {
+  throw new Error("Function not implemented.");
 }

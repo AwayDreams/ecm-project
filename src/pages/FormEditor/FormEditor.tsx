@@ -1,7 +1,8 @@
 import FormBuilder from "./FormBuilder";
+import MyFormEditor from "./MyFormEditor";
 
 export const FormEditor = (): JSX.Element => {
   return (
-    <FormBuilder></FormBuilder>
+    <MyFormEditor></MyFormEditor>
   );
 }

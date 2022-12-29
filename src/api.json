@@ -1,0 +1,9 @@
+{
+    "DataType": {
+        "save": "http://localhost:8080/datatype/"
+    },
+    "FieldType": {
+        "getAll": "http://localhost:8080/fieldtype/",
+        "save": "http://localhost:8080/fieldtype/"
+    }
+}
