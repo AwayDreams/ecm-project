@@ -2,10 +2,12 @@ class MyPaletteProvider {
   eventBus: any;
   translate: any;
   static $inject: string[];
+  
 
   constructor(eventBus, palette, translate) {
     this.eventBus = eventBus;
     this.translate = translate;
+    
 
     palette.registerProvider(this);
   }
@@ -23,6 +25,7 @@ class MyPaletteProvider {
       delete entries['create.intermediate-event'];
       delete entries['create.subprocess-expanded'];
       delete entries['global-connect-tool'];
+
       return entries;
     };
   }

@@ -1,22 +1,19 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import logo from './logo.svg';
+import React, { useCallback, useState } from 'react';
 import './App.css';
 import { Home } from './pages/Home/Home';
 import { Login } from './pages/Login/Login';
-import { Provider } from 'react-redux';
 import store from './store/storeConfig';
-import { PageHeader } from './components/PageHeader';
 import { createTheme, CssBaseline, ThemeProvider } from '@mui/material';
-import { Menu } from './components/Menu';
-import { Body } from './components/Body';
-import { ListMenu } from './pages/ListMenu/ListMenu';
+import { PageList } from './pages/PageList/PageList';
 import { DataTypeMenu } from './pages/DataTypeMenu/DataTypeMenu';
-import { FieldTypeForm } from './components/FieldTypeForm';
-import { FieldList } from './components/FieldList';
 import { CreateUserMenu } from './pages/CreateUserMenu/CreateUserMenu';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { BpmEditor } from './pages/BpmEditor/BpmEditor';
 import { FormEditor } from './pages/FormEditor/FormEditor';
+import { Transicao } from './components/Transicao';
+import { ProcessList } from './pages/ProcessList/ProcessList';
+import { DataTypeList } from './pages/DataTypeList/DataTypeList';
+import { Activity } from './pages/Activity/Activity';
 
 
 
@@ -49,28 +46,52 @@ function App() {
       </ThemeProvider>
   */
   return (
-    <Router>
-      <Switch>
-        <Route exact path="/">
-          <Login nome={""} array={[]}></Login>
-        </Route>
-        <Route path="/Home">
-          <Home></Home>
-        </Route>
-        <Route path="/CreateUser">
-          <CreateUserMenu></CreateUserMenu>
-        </Route>
-        <Route path="/bpmEditor">
-          <BpmEditor></BpmEditor>
-        </Route>
-        <Route path="/FormEditor">
-          <FormEditor></FormEditor>
-        </Route>
-        <Route path="/DataTypeMenu">
-          <DataTypeMenu dataTypeId={null}></DataTypeMenu>
-        </Route>
-      </Switch>
-    </Router>
+      <Router>
+        <Switch>
+          <Route exact path="/">
+            <Login nome={""} array={[]}></Login>
+          </Route>
+          <Route path="/Home">
+            <Home></Home>
+          </Route>
+          <Route path="/CreateUser">
+            <CreateUserMenu></CreateUserMenu>
+          </Route>
+          <Route path="/bpmEditor">
+            <Transicao>
+              <BpmEditor></BpmEditor>
+            </Transicao>
+          </Route>
+          <Route path="/formEditor">
+            <Transicao>
+                <FormEditor></FormEditor>
+            </Transicao>
+          </Route>
+          <Route path="/DataTypeMenu">
+            <DataTypeMenu dataTypeId={null}></DataTypeMenu>
+          </Route>
+          <Route path="/pageList">
+            <Transicao>
+              <PageList></PageList>
+            </Transicao>
+          </Route>
+          <Route path="/processList">
+            <Transicao>
+              <ProcessList></ProcessList>
+            </Transicao>
+          </Route>
+          <Route path="/dataTypeList">
+            <Transicao>
+              <DataTypeList></DataTypeList>
+            </Transicao>
+          </Route>
+          <Route path="/activity">
+            <Transicao>
+              <Activity></Activity>
+            </Transicao>
+          </Route>
+        </Switch>
+      </Router>
   );
 }
 

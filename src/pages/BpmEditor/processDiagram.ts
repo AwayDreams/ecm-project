@@ -7,6 +7,15 @@ type Process = {
     sequenceFlow: any;
     task: any;
 }
+
+type ActivityType = {
+    id: String | null;
+    name: String;
+    type: String;
+    pageId: Number | null;
+    processId: Number;
+}
+
 export const processDiagram = (xml: string): any => {
 
     const fluxo = {
@@ -30,7 +39,14 @@ export const processDiagram = (xml: string): any => {
         fluxo.task = process.elements.filter(element => element.name == "task")
     });
 
-    console.log("fluxo", fluxo)
 }
+
+const saveActivityType = (itens: any) => {
+    itens.forEach(item =>{
+        
+    })
+}
+
+
 
 export default processDiagram;

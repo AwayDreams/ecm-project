@@ -1,9 +1,19 @@
 {
     "DataType": {
-        "save": "http://localhost:8080/datatype/"
+        "getAll": "http://localhost:8080/datatype/",
+        "save": "http://localhost:8080/datatype/",
+        "delete": "http://localhost:8080/datatype/"
     },
     "FieldType": {
         "getAll": "http://localhost:8080/fieldtype/",
         "save": "http://localhost:8080/fieldtype/"
+    },
+    "Page": {
+        "getAll": "http://localhost:8080/page/",
+        "delete": "http://localhost:8080/page/"
+    },
+    "Process": {
+        "getAll": "http://localhost:8080/process/",
+        "delete": "http://localhost:8080/process/"
     }
 }
