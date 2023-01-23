@@ -13,7 +13,9 @@ import { FormEditor } from './pages/FormEditor/FormEditor';
 import { Transicao } from './components/Transicao';
 import { ProcessList } from './pages/ProcessList/ProcessList';
 import { DataTypeList } from './pages/DataTypeList/DataTypeList';
-import { Activity } from './pages/Activity/Activity';
+import { Process } from './pages/Process/Process';
+import { ToastContainer } from 'react-toastify';
+import { ProcessTypeList } from './pages/ProcessTypeList/ProcessTypeList';
 
 
 
@@ -46,6 +48,8 @@ function App() {
       </ThemeProvider>
   */
   return (
+    <>
+      <ToastContainer theme= "colored"/>
       <Router>
         <Switch>
           <Route exact path="/">
@@ -57,18 +61,18 @@ function App() {
           <Route path="/CreateUser">
             <CreateUserMenu></CreateUserMenu>
           </Route>
-          <Route path="/bpmEditor">
+          <Route path="/bpmEditor/:id">
             <Transicao>
               <BpmEditor></BpmEditor>
             </Transicao>
           </Route>
-          <Route path="/formEditor">
+          <Route path="/formEditor/:id">
             <Transicao>
-                <FormEditor></FormEditor>
+              <FormEditor></FormEditor>
             </Transicao>
           </Route>
-          <Route path="/DataTypeMenu">
-            <DataTypeMenu dataTypeId={null}></DataTypeMenu>
+          <Route path="/DataTypeMenu/:id">
+            <DataTypeMenu></DataTypeMenu>
           </Route>
           <Route path="/pageList">
             <Transicao>
@@ -80,18 +84,24 @@ function App() {
               <ProcessList></ProcessList>
             </Transicao>
           </Route>
+          <Route path="/processTypeList">
+            <Transicao>
+              <ProcessTypeList></ProcessTypeList>
+            </Transicao>
+          </Route>
           <Route path="/dataTypeList">
             <Transicao>
               <DataTypeList></DataTypeList>
             </Transicao>
           </Route>
-          <Route path="/activity">
+          <Route path="/process/:id">
             <Transicao>
-              <Activity></Activity>
+              <Process></Process>
             </Transicao>
           </Route>
         </Switch>
       </Router>
+    </>
   );
 }
 

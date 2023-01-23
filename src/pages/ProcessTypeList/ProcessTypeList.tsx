@@ -1,9 +1,10 @@
 import { Body } from "../../components/Body";
+import { SideList } from "../../components/SideList";
 import api from "../../api.json";
 import { useCallback, useState } from "react";
-import { ProcessGrid } from "../../components/ProcessGrid";
 
-export const ProcessList = (): JSX.Element => {
+
+export const ProcessTypeList = (): JSX.Element => {
     const [data, setData] = useState<any>();
 
     const getAllProcess = useCallback(async (setLoading: Function, setError: Function) => {
@@ -11,7 +12,7 @@ export const ProcessList = (): JSX.Element => {
             const options = {
                 method: 'GET'
             };
-            const response = await fetch(api.Process.getAll, options);
+            const response = await fetch(api.ProcessType.getAll, options);
             const data = await response.json();
             setData(data);
             setLoading(false);
@@ -28,8 +29,8 @@ export const ProcessList = (): JSX.Element => {
                 method: 'DELETE'
             };
             const params = new URLSearchParams();
-            params.set("processId", id);
-            const response = await fetch(api.Process.delete + "?" +params, options);
+            params.set("processTypeId", id);
+            const response = await fetch(api.ProcessType.delete + "?" +params, options);
             if(response.status === 200){
                 console.log(data);
                 const newData = data.filter(elem =>  elem.id !== id)
@@ -43,9 +44,9 @@ export const ProcessList = (): JSX.Element => {
     }, [data])
     
     return (
-        <Body pageTitle="Processos">
+        <Body pageTitle="Tipos de Processos">
             <div>
-                <ProcessGrid></ProcessGrid>
+                <SideList getAllFunction={getAllProcess} deleteFunction={deleteProcess} accessRoute={"/bpmEditor/"} data={data}></SideList>
             </div>
         </Body>
     );

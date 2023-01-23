@@ -30,7 +30,7 @@ export const DataTypeList = (): JSX.Element => {
             };
             const params = new URLSearchParams();
             params.set("dataTypeId", id);
-            const response = await fetch(api.DataType.delete + "?" +params, options);
+            const response = await fetch(api.DataType.delete + "?" + params, options);
             if(response.status === 200){
                 console.log(data);
                 const newData = data.filter(elem =>  elem.id !== id)
@@ -46,7 +46,7 @@ export const DataTypeList = (): JSX.Element => {
     return (
         <Body pageTitle="Tipos de Dados">
             <div>
-                <SideList getAllFunction={getAllDataTypes} deleteFunction={deleteDataType} accessRoute={"/DataTypeMenu"} data={data}></SideList>
+                <SideList getAllFunction={getAllDataTypes} deleteFunction={deleteDataType} accessRoute={"/DataTypeMenu/"} data={data}></SideList>
             </div>
         </Body>
     );

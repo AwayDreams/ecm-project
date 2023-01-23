@@ -73,7 +73,7 @@ export const FieldListItem = (props: Props): JSX.Element => {
     </CardContent>
     <Collapse in={expanded} timeout="auto" unmountOnExit>
       <CardContent>
-        <FieldTypeForm id={props.id} dataTypeId={props.dataTypeId} name={name} tipo={props.tipo} />
+        <FieldTypeForm FieldType={{id: props.id, dataTypeId: props.dataTypeId, name: name, tipo: props.tipo}} setNameCallback={setName} />
       </CardContent>
     </Collapse>
   </Card>);

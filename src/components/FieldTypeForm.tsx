@@ -1,7 +1,8 @@
 import { LoadingButton } from "@mui/lab";
 import { Box, Button, TextField } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import api from "../api.json";
+import Notification from "./Notification";
 
 const currencies = [
     {
@@ -21,18 +22,19 @@ type FieldType = {
     tipo: String
 }
 
+type Props = {
+  FieldType: FieldType,
+  setNameCallback: React.Dispatch<React.SetStateAction<String>>
+}
 
-export const FieldTypeForm = (props: FieldType): JSX.Element => {
-    const [name, setName] = useState<String>();
-    const [tipo, setTipo] = useState<String>();
+
+export const FieldTypeForm = (props: Props): JSX.Element => {
+    const {FieldType, setNameCallback} = props;
+    const [name, setName] = useState<String>(FieldType.name);
+    const [tipo, setTipo] = useState<String>(FieldType.tipo);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<Error | null>(null);
     const [data, setData] = useState<any>(null);
-
-    useEffect(()=> {
-      setName(props.name);
-      setName(props.tipo);
-    }, [])
 
     const handlerName = (event: React.ChangeEvent<HTMLInputElement>) => {
       setName(event.target.value);
@@ -40,15 +42,17 @@ export const FieldTypeForm = (props: FieldType): JSX.Element => {
 
     const handlerTipo = (event: React.ChangeEvent<HTMLInputElement>) => {
       setTipo(event.target.value);
+      console.log(event.target.value);
+      console.log(tipo);
     }
 
-    const saveFieldItem = async () => {
+    const saveFieldItem = useCallback(async () => {
       console.log("clickado")
       setLoading(true);
       try {
         const fieldType = {
-          id: props.id,
-          dataTypeId:  props.dataTypeId,
+          id: FieldType.id,
+          dataTypeId:  FieldType.dataTypeId,
           name: name,
           tipo: tipo
         } as FieldType;
@@ -59,15 +63,21 @@ export const FieldTypeForm = (props: FieldType): JSX.Element => {
             'Content-Type': 'application/json',
           }
         };
+        console.log(fieldType);
         const response = await fetch(api.FieldType.save, options);
         const data = await response.json();
         setData(data);
+        Notification.success("Campo salvo com sucesso!")
+        setNameCallback(data.name);
+        setName(data.name);
+        setTipo(data.tipo);
         setLoading(false);
       } catch (error: any) {
         setError(error);
+        Notification.error("Error ao salvar o campo!")
         setLoading(false);
       }
-    }
+    },[name, tipo])
 
     return (
         <Box sx={{display: 'inline-flex', alignItems: 'center', justifyContent: 'space-around', width: '100%'}}>

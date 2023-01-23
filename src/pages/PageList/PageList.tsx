@@ -46,7 +46,7 @@ export const PageList = (): JSX.Element => {
     return (
         <Body pageTitle="Paginas">
             <div>
-                <SideList getAllFunction={getAllPages} deleteFunction={deletePage} accessRoute={"/formEditor"} data={data}></SideList>
+                <SideList getAllFunction={getAllPages} deleteFunction={deletePage} accessRoute={"/formEditor/"} data={data}></SideList>
             </div>
         </Body>
     );

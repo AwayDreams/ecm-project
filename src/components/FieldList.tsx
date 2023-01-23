@@ -3,8 +3,9 @@ import { SideListItem } from "./SideListItem"
 import AddIcon from '@mui/icons-material/Add';
 import { CircularProgress, IconButton } from "@mui/material";
 import { FieldListItem } from "./FieldListItem";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useState } from "react";
 import api from "../api.json";
+import Notification from "./Notification";
 
 type DataType = {
     id: Number;
@@ -27,11 +28,18 @@ export const FieldList = (props: DataType) => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<Error | null>(null);
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         updateList();
     }, [])
 
-    const updateList = async () => {
+    useEffect(()=> {
+        if (data && !data.error) {
+            const model = data.map(element => { return {...element, expanded: false}});
+            setItems([...items, ...model]);
+        }
+    }, [data])
+
+    const updateList = useCallback(async () => {
         console.log("clickado")
         try {
             const options = {
@@ -41,26 +49,26 @@ export const FieldList = (props: DataType) => {
             const params = new URLSearchParams();
             params.set("dataTypeId", props.id.toString());
 
-            const response = await fetch(api.FieldType.getAll + params, options);
+            const response = await fetch(api.FieldType.getAll + "?" + params, options);
             const data = await response.json();
             setData(data);
+            Notification.success("data carregado")
             setLoading(false);
         } catch (error: any) {
             setError(error);
+            Notification.error("falha ao carregar os campos. Tente novamente mais tarde!");
             setLoading(false);
         }
-    }
+    },[])
 
-    const showItens = useCallback(() => {
+    const showItens = () => {
         console.log("data", data);
-        if (data && !data.error) {
-            const model = data.map(element => { return {...element, expanded: false}});
-            setItems([...items, model]);
-        }
         return items.map(element => {
-            return (<FieldListItem id={element.id} dataTypeId={element.dataType.id} expanded={element.expanded} name={element.name} tipo={element.type}/>)
+            console.log("item", element);
+            console.log("items", items);
+            return (<FieldListItem id={element.id} dataTypeId={element.dataType.id} expanded={element.expanded} name={element.expanded ? "Novo campo" : element.name} tipo={element.type}/>)
         });
-    }, [items]);
+    }
 
     const createFieldType = useCallback(() => {
         console.log("item", items);
@@ -75,6 +83,7 @@ export const FieldList = (props: DataType) => {
             expanded: true
         } as FieldType;
         setItems([...items, fieldType]);
+        console.log("item2", items);
     }, [items]);
 
     return (

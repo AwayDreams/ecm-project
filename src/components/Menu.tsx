@@ -6,13 +6,13 @@ export const Menu = (): JSX.Element => {
         <Box sx={{paddingLeft: '20%', marginTop: '2%'}} display="flex" flexDirection="column">
             <Grid container spacing={3} direction="row" justifyContent="center" alignItems="center">
                 <Grid item xs>
-                    <MenuCard name="Paginas" description="Gerencie as telas interativas." />
+                    <MenuCard name="Paginas" description="Gerencie as telas interativas." accessRoute={"/pageList/"}  />
                 </Grid>
                 <Grid item xs>
-                    <MenuCard name="Tipos de Dados" description="Defina agrupamentos de dados." />
+                    <MenuCard name="Tipos de Dados" description="Defina agrupamentos de dados." accessRoute={"/dataTypeList/"} />
                 </Grid>
                 <Grid item xs>
-                    <MenuCard name="Processos" description="Crie e edite fluxos de processos." />
+                    <MenuCard name="Processos" description="Crie e edite fluxos de processos." accessRoute={"/processTypeList/"} />
                 </Grid>
             </Grid>
         </Box>

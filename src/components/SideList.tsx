@@ -29,7 +29,7 @@ export const SideList = (props: Props) => {
         if (props.data && !props.data.error) {
             return (
                 <div>
-                     {props.data.map(element => <SideListItem id={element.id} name={element.name} accessRoute={"/formEditor"} deleteFunction={props.deleteFunction} />)}
+                     {props.data.map(element => <SideListItem id={element.id} name={element.name} accessRoute={props.accessRoute + element.id} deleteFunction={props.deleteFunction} />)}
                 </div>
             ) 
         }
@@ -45,7 +45,7 @@ export const SideList = (props: Props) => {
                 edge="end"
                 color="primary"
                 aria-label="profile"
-                onClick={() => history.push(props.accessRoute)}
+                onClick={() => history.push(props.accessRoute + "null" )}
             >
                 <AddIcon />
             </IconButton>
