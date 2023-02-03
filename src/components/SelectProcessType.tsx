@@ -55,9 +55,12 @@ const StyledMenu = styled((props: MenuProps) => (
 
 
 export const SelectProcessType = () => {
+    const history = useHistory();
+
     const [data, setData] = useState<any>();
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<Error | null>(null);
+    
 
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
@@ -79,6 +82,22 @@ export const SelectProcessType = () => {
             setLoading(false);
         }
     }, [data])
+
+    const selectProcessType = useCallback(async (processTypeId: number) => {
+        try {
+            const options = {
+                method: 'GET',
+            };
+            const response = await fetch(api.Bpm.iniciar + processTypeId, options);
+            const data = await response.json();
+            history.push("/process/"+ data.id);
+            setLoading(false);
+        } catch (error: any) {
+            setError(error);
+            setLoading(false);
+        }
+    }, [data])
+
 
     const handleClose = () => {
         setAnchorEl(null);
@@ -116,7 +135,7 @@ export const SelectProcessType = () => {
                 onClose={handleClose}
             >
                 {data ? data.map((item) => (
-                    <MenuItem onClick={handleClose} disableRipple>
+                    <MenuItem onClick={ () => {selectProcessType(item.id)}} disableRipple>
                         {item.name}
                     </MenuItem>
                 )) : null}

@@ -12,7 +12,7 @@ type Props = {
 export const Body = (props: Props): JSX.Element => {
     const history = useHistory();
     
-    return <Box sx={{ boxShadow: 10, margin: '10px', padding: '20px', paddingTop: '20px', borderRadius: 2, height: '90vh', display: "flex", flexDirection: "column"}}>
+    return <Box sx={{ boxShadow: 10, margin: '10px', padding: '20px', paddingTop: '20px', borderRadius: 2, height: '80vh', display: "flex", flexDirection: "column"}}>
         <Box>
             <Typography variant="h3" sx={{ paddingBottom: '10px' }}>
                 <Grid container

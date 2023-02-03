@@ -96,7 +96,7 @@ export const FormEditor = (): JSX.Element => {
         Notification.error("Error ao salvar Pagina");
         setLoading(false);
     }
-  }, [formEditorId, tipo])
+  }, [formEditorId, tipo, textAreaValue])
 
   return (
     <Body pageTitle={"Editar Pagina"} header={<HeaderFormEditor name={name} tipo={tipo} loading={loading} savePageCallback={savePage} handlerTipo={handlerTipo} handlerName={handlerName}/>}>

@@ -21,11 +21,11 @@ export const Process = (props: Props): JSX.Element => {
     useEffect(() => {
         if(id != "null"){
             setActivityId(id);
-            getDataType(id);
+            getProcess(id);
         }
     }, [activityId])
 
-    const getDataType = async (id: Number) => {
+    const getProcess = async (id: Number) => {
         try {
             const options = {
                 method: 'GET'
@@ -51,7 +51,7 @@ export const Process = (props: Props): JSX.Element => {
                 </Box>
                 <Box sx={{padding: "10px", paddingLeft: "0px"}}>
                     {
-                        data ? data.activityType.routes.map(
+                        data && data.activityType.routes ? data.activityType.routes.map(
                             element => <LoadingButton variant="contained" sx={{ padding: '5px' }} onClick={() => { }} loading={false}>{element.name}</LoadingButton>
                         ) : <div> Carregando... </div>
                     }

@@ -69,12 +69,12 @@ export const HeaderFormEditor = (props: Props): JSX.Element => {
               <option></option>
               {dataType ? dataType.map((option) => (
                     <option key={option.id} value={option.id}>
-                    {option.id}
+                    {option.name}
                     </option>
                 )): <option>Carregando...</option>}
             </TextField>
             <div>
-                <LoadingButton variant="contained" sx={{ padding: '5px' }} onClick={()=>{props.savePageCallback(name)}} loading={props.loading} >Salvar</LoadingButton>
+                <LoadingButton variant="contained" sx={{ padding: '5px' }} onClick={()=>{props.savePageCallback(props.name)}} loading={props.loading} >Salvar</LoadingButton>
             </div>
         </Box>
     );

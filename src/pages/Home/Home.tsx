@@ -5,7 +5,7 @@ import { Menu } from "../../components/Menu";
 
 export const Home = (): JSX.Element => { 
     return(
-        <Body pageTitle={"Home"}>
+        <Body pageTitle={"Menu"}>
             <Menu></Menu>
         </Body>
     )

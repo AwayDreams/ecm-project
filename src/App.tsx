@@ -16,6 +16,7 @@ import { DataTypeList } from './pages/DataTypeList/DataTypeList';
 import { Process } from './pages/Process/Process';
 import { ToastContainer } from 'react-toastify';
 import { ProcessTypeList } from './pages/ProcessTypeList/ProcessTypeList';
+import { PageHeader } from './components/PageHeader';
 
 
 
@@ -23,6 +24,9 @@ const darkTheme = createTheme({
   palette: {
     primary: {
       main: '#1976d2'
+    },
+    secondary: {
+      main: '#ffffff'
     },
   },
 });
@@ -56,7 +60,9 @@ function App() {
             <Login nome={""} array={[]}></Login>
           </Route>
           <Route path="/Home">
-            <Home></Home>
+            <Transicao>
+              <Home></Home>
+            </Transicao>
           </Route>
           <Route path="/CreateUser">
             <CreateUserMenu></CreateUserMenu>
@@ -72,7 +78,9 @@ function App() {
             </Transicao>
           </Route>
           <Route path="/DataTypeMenu/:id">
-            <DataTypeMenu></DataTypeMenu>
+            <Transicao>
+              <DataTypeMenu></DataTypeMenu>
+            </Transicao>
           </Route>
           <Route path="/pageList">
             <Transicao>

@@ -115,7 +115,7 @@ const EditTask = (props : Props) => {
               <option></option>
               {pages ? pages.map((option) => (
                     <option key={option.id} value={option.id}>
-                    {option.id}
+                    {option.name}
                     </option>
                 )): <option>Carregando...</option>}
             </TextField>

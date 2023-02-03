@@ -44,7 +44,7 @@ export const ProcessTypeList = (): JSX.Element => {
     }, [data])
     
     return (
-        <Body pageTitle="Tipos de Processos">
+        <Body pageTitle="Fluxos de Processos">
             <div>
                 <SideList getAllFunction={getAllProcess} deleteFunction={deleteProcess} accessRoute={"/bpmEditor/"} data={data}></SideList>
             </div>

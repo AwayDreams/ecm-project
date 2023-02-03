@@ -117,7 +117,8 @@ export const BpmEditor = (): JSX.Element => {
     debugger;
     setLoading(true);
     try {
-      var bpmToSave = bpm 
+      var bpmToSave = {} as Bpm;
+      Object.assign(bpmToSave, bpm);
       bpmToSave.processType.name = String(name)
       bpmToSave.processType.id = Number.isNaN(Number(id)) ? null : Number(id) 
       bpmToSave.processType.dataTypeId = Number.isNaN(Number(tipo)) ? null : Number(tipo) 
@@ -126,7 +127,7 @@ export const BpmEditor = (): JSX.Element => {
         setLoading(false);
         return;
       }
-      filterRoutes(bpmToSave.routes)
+      bpmToSave.routes = filterRoutes(bpmToSave.routes)
       const options = {
         method: 'PUT',
         body: JSON.stringify(bpmToSave),

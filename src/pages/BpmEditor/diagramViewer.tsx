@@ -92,7 +92,7 @@ export const BpmnView = (props: Props): JSX.Element => {
   setActivityEvent(modeler);
   console.log(modeler);
   setViewer(modeler);
-
+  runSetBpm(modeler);
 }, [])
 
 const setActivityEvent = (modeler: any) => {
@@ -128,11 +128,17 @@ const setActivityEvent = (modeler: any) => {
   });
 }
 
+const runSetBpm = (modeler: any) => {
+  modeler.saveXML({ format: true }, function (err: any, xml: any) {
+    console.log("SALVANDO@@")
+    props.setBpm(processDiagram({xml: xml, processType: props.processType}));
+  })
+}
+
 const setChangedEvent = (modeler: any) => {
   modeler.on('commandStack.changed', function (event) {
     modeler.saveXML({ format: true }, function (err: any, xml: any) {
-      console.log("SALVANDO@@")
-      props.setBpm(processDiagram({xml: xml, processType: props.processType}));
+      runSetBpm(modeler)
     })
     return;
   });
@@ -145,6 +151,7 @@ const importXML = async () => {
     const result = await viewer.importXML(props.content);
     const { warnings } = result;
     console.log("warnings", warnings);
+    runSetBpm(viewer);
   } catch (err: any) {
     const diagramDefault =
       `<?xml version="1.0" encoding="UTF-8"?>

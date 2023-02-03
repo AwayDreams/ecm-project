@@ -91,14 +91,14 @@ const activityTypeToSave = (itens: any, processTypeId: Number | null) => {
 }
 
 const routeToSave = (itens: any) => {
-    const rotas = itens.map(item =>{
+    return itens.map(item =>{
          return {
             id: item.attributes.id,
             name: item.attributes.name,
             nameKey: "",
             content: "",
             activity: item.attributes.sourceRef,
-            nextActivity: item.attributes.targetRef
+            nextActivity: item.attributes.targetRef.includes("Event") ? null : item.attributes.targetRef
          } as unknown as Route
      })
  }
@@ -117,7 +117,7 @@ const getFirstActivityId = (startEvent: any, sequencesFlow: any) => {
 }
 
 export function filterRoutes(rotas: any){
-    rotas = rotas.filter((r) => !r.activity.includes("Event"))
+    return rotas.filter((r) => !r.activity.includes("Event"))
 }
 
 

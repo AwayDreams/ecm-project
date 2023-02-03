@@ -35,7 +35,7 @@ type Bpm = {
   
 
 export const validaBpm = (bpm: Bpm): any => {
-    if(bpm.processType.firstActivityId == null ){
+    if(bpm.processType.firstActivityId == null && bpm.processType.id != null){
         Notification.error("Necessario o evento de start!");
         return false;
     }

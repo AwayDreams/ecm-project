@@ -27,6 +27,7 @@
         "save" : "http://localhost:8080/processType/"
     },
     "Bpm": {
-        "save" : "http://localhost:8080/bpm/"
+        "save" : "http://localhost:8080/bpm/",
+        "iniciar" : "http://localhost:8080/bpm/iniciar/"
     }
 }

@@ -26,13 +26,13 @@ export const PageHeader = (props: Props): JSX.Element => {
                 <MenuIcon />
               </IconButton>
               <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                Ecm-Project
+                Plataforma BPM
               </Typography>
               <Button color="inherit">Lucas Coelho de Faria</Button>
               <IconButton
                 size="large"
                 edge="end"
-                color="primary"
+                color="default"
                 aria-label="profile"
               >
                 <AccountCircleIcon />
