@@ -66,7 +66,7 @@ export const FieldList = (props: DataType) => {
         return items.map(element => {
             console.log("item", element);
             console.log("items", items);
-            return (<FieldListItem id={element.id} dataTypeId={element.dataType.id} expanded={element.expanded} name={element.expanded ? "Novo campo" : element.name} tipo={element.type}/>)
+            return (<FieldListItem id={element.id} dataTypeId={element.dataType.id} expanded={element.expanded} name={element.expanded ? "" : element.name} tipo={element.type} deleteFieldTypeCallback={deleteFieldType}/>)
         });
     }
 
@@ -85,6 +85,25 @@ export const FieldList = (props: DataType) => {
         setItems([...items, fieldType]);
         console.log("item2", items);
     }, [items]);
+    //resolver error aqui
+    const deleteFieldType = useCallback(async (id: any) => {
+        setLoading(true);
+        try {
+            const options = {
+                method: 'DELETE'
+            };
+            const response = await fetch(api.FieldType.delete + id, options);
+            if(response.status === 200){
+                console.log(data);
+                const newData = data.filter(elem =>  elem.id !== id)
+                setData(newData);
+            }
+            setLoading(false);
+        } catch (error: any) {
+            setError(error);
+            setLoading(false);
+        }
+    }, [data])
 
     return (
         <div>

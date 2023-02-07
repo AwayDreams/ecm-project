@@ -11,6 +11,7 @@ import {
 import { AccountCircle, Lock } from "@mui/icons-material";
 import { Button } from "@mui/material";
 import { Box } from "@mui/system";
+import { useHistory } from 'react-router-dom';
 
 import capa from "../../assets/capa.jpg"
 import logo from "../../assets/logo.webp"
@@ -22,6 +23,9 @@ type Props = {
 };
 
 export const Login = (props: Props): JSX.Element => {
+  const history = useHistory();
+
+
   return (
     <>
       <Box sx={{height: '100vh', margin: 0, padding: 0, overflow: 'hidden'}}>
@@ -83,7 +87,7 @@ export const Login = (props: Props): JSX.Element => {
                       label="Manter Conectado"
                       control={<Checkbox />}
                     />
-                    <Button variant="contained">Login</Button>
+                    <Button variant="contained" onClick={() => {history.push("/home")}}>Login</Button>
                   </Stack>
                 </Stack>
               </Box>

@@ -32,6 +32,7 @@ export const FieldTypeForm = (props: Props): JSX.Element => {
     const {FieldType, setNameCallback} = props;
     const [name, setName] = useState<String>(FieldType.name);
     const [tipo, setTipo] = useState<String>(FieldType.tipo);
+    const [id, setId] = useState<Number | null>(FieldType.id);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<Error | null>(null);
     const [data, setData] = useState<any>(null);
@@ -51,7 +52,7 @@ export const FieldTypeForm = (props: Props): JSX.Element => {
       setLoading(true);
       try {
         const fieldType = {
-          id: FieldType.id,
+          id: id,
           dataTypeId:  FieldType.dataTypeId,
           name: name,
           tipo: tipo
@@ -71,6 +72,7 @@ export const FieldTypeForm = (props: Props): JSX.Element => {
         setNameCallback(data.name);
         setName(data.name);
         setTipo(data.tipo);
+        setId(data.id);
         setLoading(false);
       } catch (error: any) {
         setError(error);

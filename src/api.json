@@ -7,6 +7,7 @@
     },
     "FieldType": {
         "getAll": "http://localhost:8080/fieldtype/",
+        "delete": "http://localhost:8080/fieldtype/",
         "save": "http://localhost:8080/fieldtype/"
     },
     "Page": {
@@ -16,6 +17,7 @@
         "save" :"http://localhost:8080/page/"
     },
     "Process": {
+        "save": "http://localhost:8080/process/",
         "getAll": "http://localhost:8080/process/",
         "get": "http://localhost:8080/process/",
         "delete": "http://localhost:8080/process/"

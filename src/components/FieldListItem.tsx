@@ -10,6 +10,7 @@ type Props = {
   expanded: boolean,
   name: String,
   tipo: String
+  deleteFieldTypeCallback: Function
 }
 
 interface ExpandMoreProps extends IconButtonProps {
@@ -42,7 +43,6 @@ export const FieldListItem = (props: Props): JSX.Element => {
     setExpanded(!expanded);
   };
 
-
   return (<Card sx={{ minWidth: 275, marginBottom: '10px' }}>
     <CardContent>
       <Box sx={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
@@ -55,6 +55,7 @@ export const FieldListItem = (props: Props): JSX.Element => {
             edge="end"
             color="primary"
             aria-label="profile"
+            onClick={() => {props.deleteFieldTypeCallback(props.id)}}
           >
             <DeleteIcon />
           </IconButton>
@@ -77,8 +78,4 @@ export const FieldListItem = (props: Props): JSX.Element => {
       </CardContent>
     </Collapse>
   </Card>);
-}
-
-function useCallBack(arg0: () => void, arg1: never[]) {
-  throw new Error("Function not implemented.");
 }
