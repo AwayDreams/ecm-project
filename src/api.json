@@ -1,35 +1,39 @@
 {
     "DataType": {
-        "getAll": "http://34.95.213.41:8080/datatype/",
-        "get": "http://34.95.213.41:8080/datatype/",
-        "save": "http://34.95.213.41:8080/datatype/",
-        "delete": "http://34.95.213.41:8080/datatype/"
+        "getAll": "http://localhost:8080/datatype/",
+        "get": "http://localhost:8080/datatype/",
+        "save": "http://localhost:8080/datatype/",
+        "delete": "http://localhost:8080/datatype/"
     },
     "FieldType": {
-        "getAll": "http://34.95.213.41:8080/fieldtype/",
-        "delete": "http://34.95.213.41:8080/fieldtype/",
-        "save": "http://34.95.213.41:8080/fieldtype/"
+        "getAll": "http://localhost:8080/fieldtype/",
+        "delete": "http://localhost:8080/fieldtype/",
+        "save": "http://localhost:8080/fieldtype/"
     },
     "Page": {
-        "getAll": "http://34.95.213.41:8080/page/",
-        "get": "http://34.95.213.41:8080/page/",
-        "delete": "http://34.95.213.41:8080/page/",
-        "save" :"http://34.95.213.41:8080/page/"
+        "getbyDataType": "http://localhost:8080/page/datatype/",
+        "getAll": "http://localhost:8080/page/",
+        "get": "http://localhost:8080/page/",
+        "delete": "http://localhost:8080/page/",
+        "save" :"http://localhost:8080/page/"
     },
     "Process": {
-        "save": "http://34.95.213.41:8080/process/",
-        "getAll": "http://34.95.213.41:8080/process/",
-        "get": "http://34.95.213.41:8080/process/",
-        "delete": "http://34.95.213.41:8080/process/"
+        "save": "http://localhost:8080/process/",
+        "getAll": "http://localhost:8080/process/",
+        "get": "http://localhost:8080/process/",
+        "delete": "http://localhost:8080/process/"
     },
     "ProcessType": {
-        "getAll": "http://34.95.213.41:8080/processType/",
-        "get": "http://34.95.213.41:8080/processType/",
-        "delete": "http://34.95.213.41:8080/processType/",
-        "save" : "http://34.95.213.41:8080/processType/"
+        "getAll": "http://localhost:8080/processType/",
+        "get": "http://localhost:8080/processType/",
+        "delete": "http://localhost:8080/processType/",
+        "save" : "http://localhost:8080/processType/"
     },
     "Bpm": {
-        "save" : "http://34.95.213.41:8080/bpm/",
-        "iniciar" : "http://34.95.213.41:8080/bpm/iniciar/"
+        "save" : "http://localhost:8080/bpm/",
+        "iniciar" : "http://localhost:8080/bpm/iniciar/"
+    },
+    "Field": {
+        "save" : "http://localhost:8080/field/"
     }
 }

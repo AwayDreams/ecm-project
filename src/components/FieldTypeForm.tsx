@@ -19,19 +19,21 @@ type FieldType = {
     id: Number | null,
     dataTypeId: Number | null,
     name: String,
-    tipo: String
+    type: String
 }
 
 type Props = {
   FieldType: FieldType,
   setNameCallback: React.Dispatch<React.SetStateAction<String>>
+  setNameCallbacktoList: Function
+  setTypeCallback: Function
 }
 
 
 export const FieldTypeForm = (props: Props): JSX.Element => {
     const {FieldType, setNameCallback} = props;
     const [name, setName] = useState<String>(FieldType.name);
-    const [tipo, setTipo] = useState<String>(FieldType.tipo);
+    const [tipo, setTipo] = useState<String>(FieldType.type);
     const [id, setId] = useState<Number | null>(FieldType.id);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<Error | null>(null);
@@ -48,6 +50,7 @@ export const FieldTypeForm = (props: Props): JSX.Element => {
     }
 
     const saveFieldItem = useCallback(async () => {
+      debugger
       console.log("clickado")
       setLoading(true);
       try {
@@ -55,7 +58,7 @@ export const FieldTypeForm = (props: Props): JSX.Element => {
           id: id,
           dataTypeId:  FieldType.dataTypeId,
           name: name,
-          tipo: tipo
+          type: tipo
         } as FieldType;
         const options = {
           method: 'PUT',
@@ -70,6 +73,8 @@ export const FieldTypeForm = (props: Props): JSX.Element => {
         setData(data);
         Notification.success("Campo salvo com sucesso!")
         setNameCallback(data.name);
+        props.setNameCallbacktoList(data.name);
+        props.setTypeCallback(data.type);
         setName(data.name);
         setTipo(data.tipo);
         setId(data.id);

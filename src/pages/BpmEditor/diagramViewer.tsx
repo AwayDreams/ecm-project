@@ -189,9 +189,8 @@ return (
   <>
     <div style={{ height: "100%" }}>
       <div id="js-canvas" />
-      <Button onClick={save}>save!</Button>
     </div>
-    {showTaskEditor ? <EditTask open={showTaskEditor} setOpen={setShowTaskEditor} dataTypeId={1} taskEditorInformation={{
+    {showTaskEditor ? <EditTask open={showTaskEditor} setOpen={setShowTaskEditor} dataTypeId={props.processType.dataTypeId} taskEditorInformation={{
       name: modalName,
       page: modalPage,
       callbackFunction: modalCallback

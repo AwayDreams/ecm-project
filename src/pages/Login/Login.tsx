@@ -49,7 +49,7 @@ export const Login = (props: Props): JSX.Element => {
                 noValidate
                 autoComplete="off"
               >
-                <img src={logo} alt="imagem" style={{width: '100%', height: '200px', objectFit: 'cover', paddingTop: '10px', paddingBottom: '10px'}}/>
+                <div style={{width: '100%', height: '200px', objectFit: 'cover', paddingTop: '10px', paddingBottom: '10px', backgroundColor: 'lightgray', marginBottom:'20px'}}/>
                 <Stack spacing={2}>
                   <TextField
                     id="outlined-password-input"

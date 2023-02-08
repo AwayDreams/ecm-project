@@ -11,6 +11,8 @@ type Props = {
   name: String,
   tipo: String
   deleteFieldTypeCallback: Function
+  setNameCallback: Function
+  setTypeCallback: Function
 }
 
 interface ExpandMoreProps extends IconButtonProps {
@@ -74,7 +76,7 @@ export const FieldListItem = (props: Props): JSX.Element => {
     </CardContent>
     <Collapse in={expanded} timeout="auto" unmountOnExit>
       <CardContent>
-        <FieldTypeForm FieldType={{id: props.id, dataTypeId: props.dataTypeId, name: name, tipo: props.tipo}} setNameCallback={setName} />
+        <FieldTypeForm FieldType={{ id: props.id, dataTypeId: props.dataTypeId, name: name, type: props.tipo }} setNameCallback={setName} setNameCallbacktoList={props.setNameCallback} setTypeCallback={props.setTypeCallback} />
       </CardContent>
     </Collapse>
   </Card>);

@@ -52,23 +52,29 @@ export const FieldList = (props: DataType) => {
             const response = await fetch(api.FieldType.getAll + "?" + params, options);
             const data = await response.json();
             setData(data);
-            Notification.success("data carregado")
             setLoading(false);
         } catch (error: any) {
             setError(error);
             Notification.error("falha ao carregar os campos. Tente novamente mais tarde!");
             setLoading(false);
         }
-    },[])
+    },[items])
 
-    const showItens = () => {
-        console.log("data", data);
+    const showItens = useCallback(() => {
         return items.map(element => {
             console.log("item", element);
             console.log("items", items);
-            return (<FieldListItem id={element.id} dataTypeId={element.dataType.id} expanded={element.expanded} name={element.expanded ? "" : element.name} tipo={element.type} deleteFieldTypeCallback={deleteFieldType}/>)
+            function setNameCallback(name: any){
+                debugger;
+                element.name = name;
+            }
+            function setTypeCallback(type: any){
+                debugger;
+                element.type = type;
+            }
+            return (<FieldListItem id={element.id} dataTypeId={element.dataType.id} expanded={element.expanded} name={element.expanded ? "" : element.name} tipo={element.type} deleteFieldTypeCallback={deleteFieldType} setNameCallback={setNameCallback} setTypeCallback={setTypeCallback}/>)
         });
-    }
+    },[items])
 
     const createFieldType = useCallback(() => {
         console.log("item", items);
@@ -85,25 +91,26 @@ export const FieldList = (props: DataType) => {
         setItems([...items, fieldType]);
         console.log("item2", items);
     }, [items]);
+
     //resolver error aqui
     const deleteFieldType = useCallback(async (id: any) => {
+        debugger
         setLoading(true);
         try {
             const options = {
                 method: 'DELETE'
             };
             const response = await fetch(api.FieldType.delete + id, options);
-            if(response.status === 200){
-                console.log(data);
-                const newData = data.filter(elem =>  elem.id !== id)
-                setData(newData);
-            }
+            console.log(data);
+            const newData = items.filter(elem =>  elem.id !== id)
+            setItems(newData);
             setLoading(false);
+            window.location.reload();
         } catch (error: any) {
             setError(error);
             setLoading(false);
         }
-    }, [data])
+    }, [data, items])
 
     return (
         <div>
@@ -118,7 +125,7 @@ export const FieldList = (props: DataType) => {
                     <AddIcon />
                 </IconButton>
             </Box>
-            <Box sx={{ border: 'solid 1px black', padding: '10px', maxHeight: '500px', overflowY: 'scroll' }}>
+            <Box sx={{ border: 'solid 1px black', padding: '10px', maxHeight: '390px', overflowY: 'scroll' }}>
                 {loading ? <CircularProgress color="secondary" /> : error ? null : showItens()}
             </Box>
         </div>

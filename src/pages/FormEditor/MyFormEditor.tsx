@@ -22,7 +22,9 @@ export const MyFormEditor = (props: Props): JSX.Element => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        getAllFieldType();
+        if(props.dataTypeId != undefined) {
+            getAllFieldType();
+        }
     }, [props.dataTypeId])
 
 
@@ -45,7 +47,6 @@ export const MyFormEditor = (props: Props): JSX.Element => {
             const response = await fetch(api.FieldType.getAll + "?" + params, options);
             const data = await response.json();
             setFieldType(data);
-            Notification.success("data carregado")
             setLoading(false);
         } catch (error: any) {
             setError(error);
@@ -55,7 +56,7 @@ export const MyFormEditor = (props: Props): JSX.Element => {
     } 
 
     return (
-        <Box sx={{ height: "100%", width: "100%", display: 'flex', justifyContent: "space-around" }}>
+        <Box sx={{ height: "90%", width: "100%", display: 'flex', justifyContent: "space-around" }}>
             <Box sx={{ width: "30%", height: "100%" }}>
                 <Box sx={{ border: 'solid 1px black', height: '100%', overflowY: 'scroll' }}>
                     {loadFieldTypeList()}

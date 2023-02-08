@@ -19,7 +19,7 @@ type TaskEditorInformation = {
 }
 
 interface Props {
-  dataTypeId: Number;
+  dataTypeId: Number | null;
   open: boolean;
   setOpen: Function;
   taskEditorInformation: TaskEditorInformation;
@@ -57,7 +57,7 @@ const EditTask = (props : Props) => {
         const options = {
             method: 'GET'
         };
-        const response = await fetch(api.Page.getAll, options);
+        const response = await fetch(api.Page.getbyDataType + props.dataTypeId, options);
         const data = await response.json();
         setPages(data);
         return data
